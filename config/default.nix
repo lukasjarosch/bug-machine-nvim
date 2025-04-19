@@ -1,11 +1,20 @@
 {
-  # Import all your configuration modules here
-  imports = [ ./bufferline.nix ./treesitter.nix  ./git.nix ./bufferline.nix];
+  imports = [ ./keymap.nix ./options.nix ../plugins];
 
-  colorschemes.rose-pine.enable = true;
-  colorschemes.rose-pine.settings.dark_variant = "moon";
 
-  plugins.trouble.enable = true;
+  colorschemes.onedark.enable = true;
+  colorschemes.onedark.settings.style = "cool";
+
+  plugins.lsp = {
+    enable = true;
+    servers = {
+      gopls.enable = true;
+      yamlls.enable = true;
+      jsonls.enable = true;
+      lua_ls.enable = true;
+    };
+  };
+
   plugins.neo-tree = {
     enable = true;
   };
