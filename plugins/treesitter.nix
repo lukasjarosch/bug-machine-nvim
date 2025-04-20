@@ -23,6 +23,7 @@
         yaml
         go
         rust
+        comment
       ];
       settings = {
         highlight.enable = true;

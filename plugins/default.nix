@@ -1,18 +1,25 @@
 {
-  imports = [ 
-    ./git.nix 
-    ./treesitter.nix
-    ./which-key.nix
-    ./telescope.nix
-    ./cmp.nix
-    ./luasnip.nix
-    ./git.nix
-    ./bufferline.nix
-  ];
+  # Import all .nix files in the plugins directory
+  imports = 
+    let
+      # Get all files in the current directory
+      files = builtins.readDir ./.;
+      # Filter for .nix files that aren't default.nix
+      nixFiles = builtins.filter
+        (filename:
+          builtins.match ".*\\.nix" filename != null &&
+          filename != "default.nix"
+        )
+        (builtins.attrNames files);
+      # Convert filenames to import paths
+      imports = map
+        (filename: ./${filename})
+        nixFiles;
+    in
+    imports;
 
   # nerdfont support
   plugins.web-devicons.enable = true;
 
-  plugins.trouble.enable = true;
   plugins.lualine.enable = true;
 }

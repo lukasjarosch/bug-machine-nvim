@@ -26,6 +26,10 @@
     updatetime = 100;
     timeout = true;
     timeoutlen = 350;
+
+    signcolumn = "yes";
+
+    guifont = "FiraCode Nerd Font:h10";
   };
 }
 
