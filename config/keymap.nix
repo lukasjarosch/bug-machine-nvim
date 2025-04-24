@@ -1,5 +1,6 @@
 {
   keymaps = [
+    # TELESCOPE ========================================
     {
       key = "<leader>ff";
       action = "<cmd>Telescope find_files<CR>";
@@ -21,6 +22,8 @@
       mode = ["n" "v"];
     }
 
+    
+    # ========================================
     {
       key = "<leader>gg";
       action = "<cmd>LazyGit<CR>";
