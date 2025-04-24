@@ -17,21 +17,25 @@
       spec = [
         # Telescope refs
         {
-          __unkeyed-1 = "<leader>t";
+          __unkeyed-1 = "<leader>f";
           group = "telescope";
           icon = "";
         }
         {
-          __unkeyed-1 = "<leader>tf";
+          __unkeyed-1 = "<leader>ff";
           desc = "Find files";
         }
         {
-          __unkeyed-1 = "<leader>tb";
+          __unkeyed-1 = "<leader>fb";
           desc = "Buffers";
         }
         {
-          __unkeyed-1 = "<leader>tw";
+          __unkeyed-1 = "<leader>fw";
           desc = "Find words";
+        }
+        {
+          __unkeyed-1 = "<leader>fk";
+          desc = "Find keymaps";
         }
 
         # Git

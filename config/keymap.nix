@@ -1,18 +1,23 @@
 {
   keymaps = [
     {
-      key = "<leader>tf";
+      key = "<leader>ff";
       action = "<cmd>Telescope find_files<CR>";
       mode = ["n" "v"];
     }
     {
-      key = "<leader>tb";
+      key = "<leader>fb";
       action = "<cmd>Telescope buffers<CR>";
       mode = ["n" "v"];
     }
     {
-      key = "<leader>tw";
+      key = "<leader>fw";
       action = "<cmd>Telescope grep_string<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "<leader>fk";
+      action = "<cmd>Telescope keymaps<CR>";
       mode = ["n" "v"];
     }
 
