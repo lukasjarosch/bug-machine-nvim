@@ -20,6 +20,4 @@
 
   # nerdfont support
   plugins.web-devicons.enable = true;
-
-  plugins.lualine.enable = true;
 }
