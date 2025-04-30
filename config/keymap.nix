@@ -22,7 +22,55 @@
       mode = ["n" "v"];
     }
 
+    # ========================================
+    {
+      key = "gd";
+      action = "<cmd>Telescope lsp_definitions<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "gr";
+      action = "<cmd>Telescope lsp_references<CR>";
+      mode = ["n" "v"];
+    }
+
+    # ========================================
+    {
+      key = "<leader>c";
+      action = "<cmd>bd<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "L";
+      action = "<cmd>BufferLineCycleNext<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "H";
+      action = "<cmd>BufferLineCyclePrev<CR>";
+      mode = ["n" "v"];
+    }
+
+    # ========================================
+
+    {
+      key = "<C-h>";
+      action = "<cmd>lua vim.cmd('wincmd h')<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "<C-l>";
+      action = "<cmd>lua vim.cmd('wincmd l')<CR>";
+      mode = ["n" "v"];
+    }
     
+    # ========================================
+    {
+      key = "<leader>Q";
+      action = "<cmd>qa!<CR>";
+      mode = ["n" "v"];
+    }
+
     # ========================================
     {
       key = "<leader>gg";

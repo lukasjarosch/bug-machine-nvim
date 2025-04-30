@@ -38,6 +38,18 @@
           desc = "Find keymaps";
         }
 
+        # General
+        {
+          __unkeyed-1 = "<leader>Q";
+          desc = "Quit!";
+        }
+
+        # Buffers
+        {
+          __unkeyed-1 = "<leader>c";
+          desc = "Close buffer";
+        }
+
         # Git
         {
           __unkeyed-1 = "<leader>g";
