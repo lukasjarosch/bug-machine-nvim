@@ -17,8 +17,8 @@
     };
   };
 
-  # Set diagnostic signs to icons
   extraConfigLua = ''
+    -- Set diagnostic signs to icons
     vim.diagnostic.config({
       signs = {
         text = {

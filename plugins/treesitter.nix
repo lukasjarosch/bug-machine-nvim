@@ -42,10 +42,7 @@
       highlightCurrentScope.enable = true;
       smartRename.enable = true;
       navigation = {
-        enable = true;
-        keymaps = {
-          gotoDefinition = "gd";
-        };
+        enable = false;
       };
     };
 
