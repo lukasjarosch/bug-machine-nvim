@@ -2,8 +2,8 @@
   imports = [ ./keymap.nix ./options.nix ../plugins];
 
 
-  # colorschemes.onedark.enable = true;
-  # colorschemes.onedark.settings.style = "cool";
+  colorschemes.onedark.enable = true;
+  colorschemes.onedark.settings.style = "cool";
 
 
   diagnostics = {
@@ -16,9 +16,25 @@
       severity_sort = true;  # Sort by severity
       enable = true;        # Make sure signs are enabled
     };
+    underline = {
+      enable = true;
+    };
+    float = {
+      enable = true;
+      border = "rounded";  # Abgerundete Ränder
+      source = "always";   # Quelle der Diagnose anzeigen
+      header = "Diagnose";
+      prefix = "";
+    };
   };
 
   extraConfigLua = ''
+    -- Format on save
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = {"*.go", "*.rs", "*.sh", "*.bash", "*.nix"},
+      callback = function() vim.lsp.buf.format({async = false}) end,
+    })
+
     -- Set diagnostic signs to icons
     vim.diagnostic.config({
       signs = {
@@ -32,15 +48,4 @@
       },
     })
   '';
-
-  plugins.lsp = {
-    enable = true;
-    servers = {
-      gopls.enable = true;
-      yamlls.enable = true;
-      jsonls.enable = true;
-      lua_ls.enable = true;
-    };
-  };
-
 }

@@ -19,14 +19,6 @@
       # Deine Konfiguration für nixvim hier, ohne home-manager
       nixvimModules.default = { pkgs, ... }: {
         imports = [ ./config ];
-        
-        plugins.windowPicker.enable = true;
-       plugins.sonokai.enable = true;
-       plugins.sonokai.settings = {
-        style = "atlantis"; # oder wähle einen anderen Stil, den du bevorzugst
-        transparent_background = false; # auf true setzen, wenn du einen transparenten Hintergrund möchtest
-        diagnostics.undercurl = true;
-      };
       };
 
       packages.${system}.default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
@@ -39,8 +31,6 @@
         programs.nixvim = {
           enable = true;
           imports = [ ./config ];
-          
-          plugins.windowPicker.enable = true;
         };
       };
     };

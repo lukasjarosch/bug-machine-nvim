@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 with lib;
-let cfg = config.colorschemes.sonokai;
+let cfg = config.plugins.sonokai;
 in {
   options.plugins.sonokai = {
     enable = mkEnableOption "Enable sonokai colorscheme";
@@ -9,7 +9,7 @@ in {
     settings = {
       style = mkOption {
         type = types.enum [ "default" "atlantis" "andromeda" "shusia" "maia" "espresso" ];
-        default = "default";
+        default = "atlantis";
         description = "The style of sonokai";
       };
       

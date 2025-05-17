@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{ pkgs, config, lib, ... }: {
   plugins = {
     treesitter = {
       enable = true;
@@ -24,6 +19,8 @@
         go
         rust
         comment
+        gomod
+        typescript
       ];
       settings = {
         highlight.enable = true;

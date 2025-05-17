@@ -20,4 +20,9 @@
 
   # nerdfont support
   plugins.web-devicons.enable = true;
+
+  # custom plugins
+  plugins.windowPicker.enable = true;
+  # plugins.sonokai.enable = true;
+  plugins.nix.enable = true;
 }
