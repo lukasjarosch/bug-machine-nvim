@@ -13,7 +13,7 @@
     }
     {
       key = "<leader>fw";
-      action = "<cmd>Telescope grep_string<CR>";
+      action = "<cmd>Telescope live_grep<CR>";
       mode = ["n" "v"];
     }
     {
