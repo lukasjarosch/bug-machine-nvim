@@ -1,6 +1,6 @@
 {
   # Import all .nix files in the plugins directory
-  imports = 
+  imports =
     let
       # Get all files in the current directory
       files = builtins.readDir ./.;
@@ -18,11 +18,16 @@
     in
     imports;
 
-  # nerdfont support
-  plugins.web-devicons.enable = true;
+  plugins = {
+    # nerdfont support
+    web-devicons.enable = true;
 
-  # custom plugins
-  plugins.windowPicker.enable = true;
-  # plugins.sonokai.enable = true;
-  plugins.nix.enable = true;
+    # custom plugins
+    windowPicker.enable = true;
+    sonokai.enable = false; # disable `colorscheme` if enabled
+    nix.enable = true;
+    vimGo.enable = true;
+  };
+
+
 }
