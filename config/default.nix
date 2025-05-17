@@ -1,5 +1,5 @@
 {
-  imports = [ ./keymap.nix ./options.nix ../plugins];
+  imports = [ ./keymap.nix ./options.nix ../plugins ];
 
 
   colorschemes.onedark.enable = true;
@@ -8,21 +8,21 @@
 
   diagnostics = {
     virtual_text = {
-      spacing = 4;  # Number of spaces between virtual text and the line
-      source = "always";  # Show source of diagnostic
-      prefix = "●";  # Prefix for virtual text
+      spacing = 4; # Number of spaces between virtual text and the line
+      source = "always"; # Show source of diagnostic
+      prefix = "●"; # Prefix for virtual text
     };
     signs = {
-      severity_sort = true;  # Sort by severity
-      enable = true;        # Make sure signs are enabled
+      severity_sort = true; # Sort by severity
+      enable = true; # Make sure signs are enabled
     };
     underline = {
       enable = true;
     };
     float = {
       enable = true;
-      border = "rounded";  # Abgerundete Ränder
-      source = "always";   # Quelle der Diagnose anzeigen
+      border = "rounded"; # Abgerundete Ränder
+      source = "always"; # Quelle der Diagnose anzeigen
       header = "Diagnose";
       prefix = "";
     };
@@ -33,6 +33,17 @@
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = {"*.go", "*.rs", "*.sh", "*.bash", "*.nix"},
       callback = function() vim.lsp.buf.format({async = false}) end,
+    })
+
+    -- Make trailing spaces more visible with a custom highlighting
+    vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF5370", fg = "#FFFFFF" })
+
+    -- Create match for trailing whitespace with custom highlighting
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      pattern = "*",
+      callback = function()
+        vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
+      end
     })
 
     -- Set diagnostic signs to icons
