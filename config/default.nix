@@ -2,8 +2,9 @@
   imports = [ ./keymap.nix ./options.nix ../plugins];
 
 
-  colorschemes.onedark.enable = true;
-  colorschemes.onedark.settings.style = "cool";
+  # colorschemes.onedark.enable = true;
+  # colorschemes.onedark.settings.style = "cool";
+
 
   diagnostics = {
     virtual_text = {
