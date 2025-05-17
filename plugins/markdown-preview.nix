@@ -2,7 +2,7 @@
   plugins.markdown-preview = {
     enable = true;
     settings = {
-      auto_start = 1;
+      auto_start = 0;
       browser = "";
       theme = "dark";
       sync_scroll_type = "middle";

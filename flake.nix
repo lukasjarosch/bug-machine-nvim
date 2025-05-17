@@ -15,8 +15,8 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      # Deine Konfiguration für nixvim hier, ohne home-manager
+    in
+    {
       nixvimModules.default = { pkgs, ... }: {
         imports = [ ./config ];
       };
