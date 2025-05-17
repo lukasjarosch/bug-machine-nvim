@@ -63,6 +63,16 @@
       action = "<cmd>lua vim.cmd('wincmd l')<CR>";
       mode = ["n" "v"];
     }
+    {
+      key = "<C-j>";
+      action = "<cmd>lua vim.cmd('wincmd j')<CR>";
+      mode = ["n" "v"];
+    }
+    {
+      key = "<C-k>";
+      action = "<cmd>lua vim.cmd('wincmd k')<CR>";
+      mode = ["n" "v"];
+    }
     
     # ========================================
     {

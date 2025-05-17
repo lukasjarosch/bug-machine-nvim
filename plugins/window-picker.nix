@@ -14,6 +14,7 @@ in {
 
     extraConfigLua = ''
       require('window-picker').setup({
+        hint = "floating-big-letter",
         autoselect_one = true,
         include_current = false,
         filter_rules = {
