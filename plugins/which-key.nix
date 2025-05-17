@@ -6,11 +6,11 @@
       layout = {
         height = {
           min = 10;
-          max =  30;
+          max = 30;
         };
         width = {
           min = 20;
-          max =  60;
+          max = 60;
         };
       };
 
