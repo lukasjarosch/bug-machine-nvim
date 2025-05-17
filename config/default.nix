@@ -39,9 +39,52 @@
     vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF5370", fg = "#FFFFFF" })
 
     -- Create match for trailing whitespace with custom highlighting
-    vim.api.nvim_create_autocmd("BufWinEnter", {
+    -- but exclude certain filetypes where it doesn't make sense
+    vim.api.nvim_create_autocmd({"BufWinEnter", "FileType"}, {
       pattern = "*",
       callback = function()
+        local ft = vim.bo.filetype
+        -- If it's the dasboard, remove all matches
+        if ft == "dashboard" then
+          for _, match_id in ipairs(vim.fn.getmatches()) do
+            if match_id.group == "TrailingWhitespace" then
+              vim.fn.matchdelete(match_id.id)
+            end
+          end
+          return
+        end
+
+        local ignore_ft = {
+          "dashboard",
+          "alpha",
+          "startify",
+          "NvimTree",
+          "neo-tree",
+          "lazy",
+          "help",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "lspinfo",
+          "mason",
+          "toggleterm",
+          "qf", -- quickfix window
+          "checkhealth",
+          "aerial",
+        }
+        for _, ignored in ipairs(ignore_ft) do
+          if ft == ignored then
+            return
+          end
+        end
+
+        -- remove existing matches to prevent duplicates
+        for _, match_id in ipairs(vim.fn.getmatches()) do
+          if match_id.group == "TrailingWhitespace" then
+            vim.fn.matchdelete(match_id.id)
+          end
+        end
+
+        -- new match
         vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
       end
     })
