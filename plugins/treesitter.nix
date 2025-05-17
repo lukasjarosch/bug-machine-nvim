@@ -39,7 +39,7 @@
     treesitter-refactor = {
       enable = true;
       highlightDefinitions.enable = true;
-      highlightCurrentScope.enable = true;
+      highlightCurrentScope.enable = false;
       smartRename.enable = true;
       navigation = {
         enable = false;
