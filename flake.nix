@@ -5,40 +5,37 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    { nixvim, flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "x86_64-linux"
-      ];
+  outputs = { self, nixpkgs, nixvim, flake-parts, home-manager, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      # Deine Konfiguration für nixvim hier, ohne home-manager
+      nixvimModules.default = { pkgs, ... }: {
+        imports = [ ./config ];
+        
+        plugins.windowPicker.enable = true;
+      };
 
-      perSystem =
-        { system, ... }:
-        let
-          nixvimLib = nixvim.lib.${system};
-          nixvim' = nixvim.legacyPackages.${system};
-          nixvimModule = {
-            inherit system; # or alternatively, set `pkgs`
-            module = import ./config; # import the module directly
-            # You can use `extraSpecialArgs` to pass additional arguments to your module files
-            extraSpecialArgs = {
-              # inherit (inputs) foo;
-            };
-          };
-          nvim = nixvim'.makeNixvimWithModule nixvimModule;
-        in
-        {
-          checks = {
-            # Run `nix flake check .` to verify that your config is not broken
-            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-          };
+      packages.${system}.default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+        inherit pkgs;
+        module = self.nixvimModules.default;
+      };
 
-          packages = {
-            # Lets you run `nix run .` to start nixvim
-            default = nvim;
-          };
+      homeManagerModules.default = { config, pkgs, ... }: {
+        imports = [ nixvim.homeManagerModules.nixvim ];
+        programs.nixvim = {
+          enable = true;
+          imports = [ ./config ];
+          
+          plugins.windowPicker.enable = true;
         };
+      };
     };
 }
