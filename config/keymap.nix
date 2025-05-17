@@ -150,8 +150,9 @@
     # BUFFER CONTROLS ========================================
     {
       key = "<leader>c";
-      action = "<cmd>bd<CR>";
+      action = "<cmd>bp|bd #<CR>";
       mode = [ "n" "v" ];
+      options.desc = "Close buffer but keep window open";
     }
     {
       key = "L";
