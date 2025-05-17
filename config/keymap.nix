@@ -1,5 +1,30 @@
 {
   keymaps = [
+    # SELECTION ========================================
+    {
+      key = "<C-A-j>";
+      action = ":m .+1<CR>==";
+      mode = [ "n" ];
+      options.desc = "Move line down";
+    }
+    {
+      key = "<C-A-k>";
+      action = ":m .-2<CR>==";
+      mode = [ "n" ];
+      options.desc = "Move line up";
+    }
+    {
+      key = "<C-A-j>";
+      action = ":m '>+1<CR>gv=gv";
+      mode = [ "v" ];
+      options.desc = "Move selection down";
+    }
+    {
+      key = "<C-A-k>";
+      action = ":m '<-2<CR>gv=gv";
+      mode = [ "v" ];
+      options.desc = "Move selection up";
+    }
     # TELESCOPE ========================================
     {
       key = "<leader>ff";
