@@ -70,9 +70,31 @@
           "qf", -- quickfix window
           "checkhealth",
           "aerial",
+          "noice",
+          "notify",
+          "nui",
         }
+
+        local ignore_bt = {
+          "nofile",
+          "prompt",
+          "popup",
+          "noice",
+          "notify"
+        }
+
+        local buftype = vim.bo.buftype
+
+        -- check if the current filetype needs to be ignored
         for _, ignored in ipairs(ignore_ft) do
           if ft == ignored then
+            return
+          end
+        end
+
+        -- check if the current buftype should be ignored
+        for _, ignored in ipairs(ignore_bt) do
+          if buftype == ignored then
             return
           end
         end
@@ -84,7 +106,7 @@
           end
         end
 
-        -- new match
+          -- new match
         vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
       end
     })
