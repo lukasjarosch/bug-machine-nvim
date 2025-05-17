@@ -1,5 +1,12 @@
 {
   keymaps = [
+    # Start resize mode (smart-splits)
+    {
+      key = "<leader>wr";
+      action = "<cmd>lua require('smart-splits').start_resize_mode()<CR>";
+      mode = [ "n" ];
+      options.desc = "Window resize mode";
+    }
     # SELECTION ========================================
     {
       key = "<C-A-j>";
