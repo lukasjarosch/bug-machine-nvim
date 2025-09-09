@@ -51,6 +51,7 @@
       };
 
       yamlls.enable = true;
+      terraformls.enable = true;
       jsonls.enable = true;
       lua_ls.enable = true;
       nil_ls.enable = true;

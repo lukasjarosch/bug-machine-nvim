@@ -29,9 +29,17 @@
   };
 
   extraConfigLua = ''
+    -- File type detection for HJSON files
+    vim.filetype.add({
+      extension = {
+        hjson = 'json',
+        hujson = 'json',
+      },
+    })
+
     -- Format on save
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = {"*.go", "*.rs", "*.sh", "*.bash", "*.nix"},
+      pattern = {"*.go", "*.rs", "*.sh", "*.bash", "*.nix", "*.hjson", "*.hujson"},
       callback = function() vim.lsp.buf.format({async = false}) end,
     })
 

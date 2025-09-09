@@ -7,6 +7,13 @@
       mode = [ "n" ];
       options.desc = "Window resize mode";
     }
+    # F-Keys ========================================
+    {
+      key = "<F5>";
+      action = ":nnoremap <silent> <F5> :keeppatterns %s/\s\+$//e<CR>";
+      mode = [ "n" "v" ];
+      options.desc = "Trim trailing whitespace";
+    }
     # SELECTION ========================================
     {
       key = "<C-A-j>";
