@@ -15,7 +15,7 @@
           settings.extra_args = [ "-i" "2" "-ci" ];
         };
         # Nix
-        nixpkgs_fmt.enable = true;
+        nixfmt.enable = true;
       };
 
       diagnostics = {
