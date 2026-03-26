@@ -32,6 +32,7 @@
     nix.enable = true;
     vimGo.enable = true;
     nvim-surround.enable = true;
+    mini-align.enable = true;
   };
 
 }
