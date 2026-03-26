@@ -42,6 +42,7 @@
     sonokai.enable = false; # disable `colorscheme` if enabled
     nix.enable = true;
     vimGo.enable = true;
+    nvim-surround.enable = true;
   };
 
 
