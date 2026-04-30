@@ -10,9 +10,28 @@
     # F-Keys ========================================
     {
       key = "<F5>";
-      action = ":nnoremap <silent> <F5> :keeppatterns %s/\s\+$//e<CR>";
+      action = ":nnoremap <silent> <F5> :keeppatterns %s/s+$//e<CR>";
       mode = [ "n" "v" ];
       options.desc = "Trim trailing whitespace";
+    }
+    # OVERRIDE DEFAULTS ========================================
+    {
+      mode = "n";
+      key = "<esc>";
+      action = "<cmd>noh<cr><esc>";
+      options = {
+        silent = true;
+        desc = "Escape and clear hlsearch";
+      };
+    }
+    {
+      mode = "x";
+      key = "p";
+      action = ''"_dP'';
+      options = {
+        desc = "Paste without overwriting register";
+        silent = true;
+      };
     }
     # SELECTION ========================================
     {
@@ -115,6 +134,26 @@
       action = "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>";
       mode = [ "n" ];
       options.desc = "Workspace symbols";
+    }
+
+    # TROUBLE =================================================
+    {
+      mode = "n";
+      key = "<leader>xw";
+      action = "<cmd>Trouble diagnostics toggle<cr>";
+      options = { desc = "Full Diagnostics (Trouble)"; };
+    }
+    {
+      mode = "n";
+      key = "<leader>xd";
+      action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
+      options = { desc = "Buffer Diagnostics (Trouble)"; };
+    }
+    {
+      mode = "n";
+      key = "<leader>xq";
+      action = "<cmd>Trouble qflist toggle<cr>";
+      options = { desc = "Quickfix List (Trouble)"; };
     }
 
     # GO-SPECIFIC COMMANDS ====================================

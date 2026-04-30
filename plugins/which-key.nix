@@ -50,6 +50,13 @@
           desc = "Close buffer";
         }
 
+        # Trouble
+        {
+          __unkeyed-1 = "<leader>x";
+          group = "trouble";
+          icon = "❌";
+        }
+
         # Git
         {
           __unkeyed-1 = "<leader>g";
@@ -60,7 +67,6 @@
           __unkeyed-1 = "<leader>gc";
           desc = "Commits";
         }
-
 
         # Windows
         {

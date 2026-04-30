@@ -22,6 +22,8 @@
     numberwidth = 3;
     ruler = false;
     showmode = false;
+    hlsearch = true;
+    incsearch = true;
 
     updatetime = 100;
     timeout = true;
