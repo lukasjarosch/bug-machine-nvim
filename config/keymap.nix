@@ -124,7 +124,7 @@
       options.desc = "Rename symbol";
     }
     {
-      key = "<leader>ds";
+      key = "<leader>ls";
       action = "<cmd>Telescope lsp_document_symbols<CR>";
       mode = [ "n" ];
       options.desc = "Document symbols";

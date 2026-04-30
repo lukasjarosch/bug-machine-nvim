@@ -68,6 +68,13 @@
           desc = "Commits";
         }
 
+        # Debugging
+        {
+          __unkeyed-1 = "<leader>d";
+          group = "🐞 debug";
+          icon = "";
+        }
+
         # Windows
         {
           __unkeyed-1 = "<leader>w";
