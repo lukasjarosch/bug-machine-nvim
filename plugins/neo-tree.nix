@@ -1,15 +1,19 @@
 {
   plugins.neo-tree = {
     enable = true;
+    closeIfLastWindow = true;
 
-    # Anstelle von "settings" verwenden wir die direkten Optionen
-    window.mappings = {
-      "v" = "split_with_window_picker";
-      "s" = "vsplit_with_window_picker";
-      "w" = "open_with_window_picker";
+    filesystem = {
+      followCurrentFile = { enabled = true; };
+
+      window.mappings = {
+        "v" = "split_with_window_picker";
+        "s" = "vsplit_with_window_picker";
+        "w" = "open_with_window_picker";
+      };
     };
 
-    filesystem.window.mappings = {
+    window.mappings = {
       "v" = "split_with_window_picker";
       "s" = "vsplit_with_window_picker";
       "w" = "open_with_window_picker";
