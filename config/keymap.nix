@@ -199,7 +199,20 @@
       mode = [ "n" ];
       options.desc = "Run current file";
     }
-
+    # SNIPPETS ===============================================
+    {
+      mode = "i";
+      key = "<Tab>";
+      action =
+        "function() if require('luasnip').expand_or_jumpable() then require('luasnip').expand_or_jump() else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false) end end";
+      lua = true;
+    }
+    {
+      mode = "s";
+      key = "<Tab>";
+      action = "function() require('luasnip').jump(1) end";
+      lua = true;
+    }
     # BUFFER CONTROLS ========================================
     {
       key = "<leader>c";
