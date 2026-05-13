@@ -1,0 +1,12 @@
+{
+  "Let-in block": {
+    "prefix": "letin",
+    "body": [
+      "let",
+      "\t${1:name} = ${2:value};",
+      "in",
+      "$0"
+    ],
+    "description": "Nix let .. in block"
+  }
+}

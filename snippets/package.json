@@ -1,0 +1,22 @@
+{
+  "name": "bug-machine-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["global"],
+        "path": "./global.json"
+      },
+      {
+        "language": ["go"],
+        "path": "./go.json"
+      },
+      {
+        "language": ["nix"],
+        "path": "./nix.json"
+      }
+    ]
+  }
+}
