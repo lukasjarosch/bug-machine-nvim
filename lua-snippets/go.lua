@@ -124,8 +124,8 @@ return {
   s("iferr", iferr_nodes()),
   s("ifer", iferr_nodes()),
 
-  -- `expr.print` → `fmt.Println(expr)` for quick debug prints.
-  postfix({ trig = ".print", match_pattern = go_expr_pattern }, {
+  -- `expr.prl` → `fmt.Println(expr)` for quick debug prints.
+  postfix({ trig = ".prl", match_pattern = go_expr_pattern }, {
     t("fmt.Println("),
     f(function(_, parent) return parent.snippet.env.POSTFIX_MATCH end),
     t(")"), i(0),
