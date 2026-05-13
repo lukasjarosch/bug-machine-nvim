@@ -2,6 +2,19 @@
   globals = {
     mapleader = " ";
     maplocalleader = ",";
+
+    # Neovide-only knobs (terminal nvim ignores them). Tweak to taste.
+    neovide_floating_corner_radius = 0.4;
+    neovide_floating_shadow = true;
+    neovide_floating_blur_amount_x = 2.0;
+    neovide_floating_blur_amount_y = 2.0;
+    neovide_padding_top = 8;
+    neovide_padding_bottom = 8;
+    neovide_padding_left = 8;
+    neovide_padding_right = 8;
+    neovide_cursor_animation_length = 5.0e-2;
+    neovide_cursor_trail_size = 0.2;
+    neovide_scroll_animation_length = 0.2;
   };
 
   opts = {
@@ -48,6 +61,6 @@
 
     signcolumn = "yes";
 
-    guifont = "FiraCode Nerd Font:h10";
+    guifont = "FiraCode Nerd Font:h12";
   };
 }
