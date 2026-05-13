@@ -106,6 +106,10 @@ local function iferr_nodes()
 end
 
 return {
+  -- `ret` — bare context-aware return. Same machinery as `ifn`/`iferr`, just
+  -- without a surrounding guard.
+  s("ret", { d(1, build_returns), i(0) }),
+
   -- `ifn` — nil guard. The `d` node re-runs `build_returns` on every
   -- expansion, so the inserted `return ...` reflects the enclosing function's
   -- current signature.
