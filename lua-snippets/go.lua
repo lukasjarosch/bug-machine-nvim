@@ -4,6 +4,13 @@ local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local d = ls.dynamic_node
+local f = ls.function_node
+local postfix = require("luasnip.extras.postfix").postfix
+
+-- Captures the Go expression to the left of a postfix trigger. Includes
+-- parens/brackets/derefs so calls like `client.Do(req)` and `&foo.bar[0]`
+-- are matched whole rather than chopped at the first non-word character.
+local go_expr_pattern = "[%w%.%_%-%(%)%[%]%&%*]+$"
 
 -- Treesitter Go grammar node kinds whose zero value is `nil`. `qualified_type`
 -- (e.g. `context.Context`) is included because the common cases are interfaces;
@@ -89,6 +96,15 @@ local function build_returns()
   return sn(nil, nodes)
 end
 
+-- Body for the `err != nil` guard. `iferr` and `ifer` share it.
+local function iferr_nodes()
+  return {
+    t({ "if err != nil {", "\t" }),
+    d(1, build_returns),
+    t({ "", "}", "" }), i(0),
+  }
+end
+
 return {
   -- `ifn` — nil guard. The `d` node re-runs `build_returns` on every
   -- expansion, so the inserted `return ...` reflects the enclosing function's
@@ -97,5 +113,17 @@ return {
     t("if "), i(1, "x"), t({ " == nil {", "\t" }),
     d(2, build_returns),
     t({ "", "}", "" }), i(0),
+  }),
+
+  -- `iferr` / `ifer` — the canonical Go error guard, but the returned values
+  -- match the enclosing function's signature instead of a hard-coded `err`.
+  s("iferr", iferr_nodes()),
+  s("ifer", iferr_nodes()),
+
+  -- `expr.print` → `fmt.Println(expr)` for quick debug prints.
+  postfix({ trig = ".print", match_pattern = go_expr_pattern }, {
+    t("fmt.Println("),
+    f(function(_, parent) return parent.snippet.env.POSTFIX_MATCH end),
+    t(")"), i(0),
   }),
 }

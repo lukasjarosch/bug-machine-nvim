@@ -1,14 +1,4 @@
 {
-  "if err != nil": {
-    "prefix": "iferr",
-    "body": [
-      "if err != nil {",
-      "\treturn ${1:err}",
-      "}",
-      "$0"
-    ],
-    "description": "Standard Go error check"
-  },
   "type struct constructor": {
     "prefix": "tysc",
     "body": [
@@ -22,5 +12,13 @@
       "$0"
     ],
     "description": "Go type with constructor"
+  },
+  "println": {
+    "prefix": "prl",
+    "body": [
+      "fmt.Println(\"$1\")",
+      "$0"
+    ],
+    "description": "fmt.Println"
   }
 }
