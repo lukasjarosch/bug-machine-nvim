@@ -2,19 +2,13 @@
 
 My personal Neovim flake, built with [nixvim](https://github.com/nix-community/nixvim).
 
-![dashboard](dashboard.png)
+![screenshot](screenshot.png)
 
 ## Quickstart
 
 ```sh
-nix run github:lukasjarosch/bug-machine-nvim                  # nixvim
-nix run github:lukasjarosch/bug-machine-nvim#neovide          # nixvim within neovide
-```
-
-For home-manager, import `homeManagerModules.default` — it wires up the nvim config and ships the neovide wrapper plus its `.desktop` entry so rofi/fuzzel/wofi find it:
-
-```nix
-imports = [ inputs.bug-machine-nvim.homeManagerModules.default ];
+nix run github:lukasjarosch/bug-machine-nvim         # nixvim
+nix run github:lukasjarosch/bug-machine-nvim#neovide # nixvim + neovide
 ```
 
 ## Layout
@@ -26,4 +20,4 @@ imports = [ inputs.bug-machine-nvim.homeManagerModules.default ];
 
 ## License
 
-MIT. Personal config — no support, but feel free to lift bits.
+MIT. Personal config, no support.
