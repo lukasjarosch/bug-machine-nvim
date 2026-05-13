@@ -1,14 +1,29 @@
 # :snowflake: Bug Machine Nvim
-> Abandon all hope, clone at your own peril
+
+My personal Neovim flake, built with [nixvim](https://github.com/nix-community/nixvim).
 
 ![dashboard](dashboard.png)
 
-## What is this abomination?
+## Quickstart
 
-My personal Neovim flake built with Nixvim.
-It's probably broken, definitely cursed, and somehow still works for me.
-Use at your own risk - I take no responsibility for lost productivity, corrupted files, or existential crises that may result from using this config.
+```sh
+nix run github:lukasjarosch/bug-machine-nvim                  # nixvim
+nix run github:lukasjarosch/bug-machine-nvim#neovide          # nixvim within neovide
+```
+
+For home-manager, import `homeManagerModules.default` — it wires up the nvim config and ships the neovide wrapper plus its `.desktop` entry so rofi/fuzzel/wofi find it:
+
+```nix
+imports = [ inputs.bug-machine-nvim.homeManagerModules.default ];
+```
+
+## Layout
+
+- `config/` — core options, keymaps, and the lua glue (`extraConfigLua`)
+- `plugins/` — one file per plugin, auto-imported by `plugins/default.nix`
+- `snippets/` — VS Code-format snippets (JSON)
+- `lua-snippets/` — native luasnip snippets in Lua
 
 ## License
 
-MIT - Feel free to study this configuration as a cautionary tale of what not to do.
+MIT. Personal config — no support, but feel free to lift bits.
