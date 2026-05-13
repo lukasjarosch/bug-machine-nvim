@@ -1,10 +1,8 @@
 {
   imports = [ ./keymap.nix ./options.nix ../plugins ];
 
-
   colorschemes.onedark.enable = true;
-  colorschemes.onedark.settings.style = "cool";
-
+  colorschemes.onedark.settings.style = "deep";
 
   diagnostics = {
     virtual_text = {
@@ -16,9 +14,7 @@
       severity_sort = true; # Sort by severity
       enable = true; # Make sure signs are enabled
     };
-    underline = {
-      enable = true;
-    };
+    underline = { enable = true; };
     float = {
       enable = true;
       border = "rounded"; # Abgerundete Ränder
