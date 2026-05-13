@@ -16,9 +16,7 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config = { allowUnfree = true; };
       };
 
       # Build the neovide GUI wrapper for a given pkgs + already-built nvim
@@ -41,10 +39,11 @@
           };
           desktopItem = pkgs.makeDesktopItem {
             name = "bug-machine-nvim";
-            desktopName = "BugMachine (Neovide)";
+            desktopName = "BugMachine";
             comment = "Bundled nixvim config running under neovide";
             exec = "${launcher}/bin/neovide %F";
-            icon = "${pkgs.neovide}/share/icons/hicolor/scalable/apps/neovide.svg";
+            icon =
+              "${pkgs.neovide}/share/icons/hicolor/scalable/apps/neovide.svg";
             terminal = false;
             categories = [ "Development" "TextEditor" ];
             startupWMClass = "neovide";
@@ -57,19 +56,15 @@
               "text/x-nix"
             ];
           };
-        in
-        pkgs.symlinkJoin {
+        in pkgs.symlinkJoin {
           name = "neovide-bug-machine";
           paths = [ launcher desktopItem ];
           # Without mainProgram, `nix run .#neovide` would look for
           # bin/neovide-bug-machine (the derivation name) and fail.
           meta.mainProgram = "neovide";
         };
-    in
-    {
-      nixvimModules.default = { pkgs, ... }: {
-        imports = [ ./config ];
-      };
+    in {
+      nixvimModules.default = { pkgs, ... }: { imports = [ ./config ]; };
 
       packages.${system} = {
         default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
@@ -88,7 +83,8 @@
         };
         # Ships the neovide wrapper + .desktop entry into home-manager's
         # XDG paths so rofi/fuzzel/wofi pick it up automatically.
-        home.packages = [ (mkNeovide pkgs config.programs.nixvim.finalPackage) ];
+        home.packages =
+          [ (mkNeovide pkgs config.programs.nixvim.finalPackage) ];
       };
     };
 }
