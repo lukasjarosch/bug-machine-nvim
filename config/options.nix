@@ -14,6 +14,7 @@
     neovide_padding_right = 8;
     neovide_cursor_animation_length = 5.0e-2;
     neovide_cursor_trail_size = 0.2;
+    neovide_cursor_vfx_mode = "torpedo";
     neovide_scroll_animation_length = 0.2;
   };
 
