@@ -61,6 +61,9 @@
         pkgs.symlinkJoin {
           name = "neovide-bug-machine";
           paths = [ launcher desktopItem ];
+          # Without mainProgram, `nix run .#neovide` would look for
+          # bin/neovide-bug-machine (the derivation name) and fail.
+          meta.mainProgram = "neovide";
         };
     in
     {
