@@ -213,6 +213,19 @@
       action = "function() require('luasnip').jump(1) end";
       lua = true;
     }
+    {
+      mode = "i";
+      key = "<S-Tab>";
+      action =
+        "function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, false, true), 'n', false) end end";
+      lua = true;
+    }
+    {
+      mode = "s";
+      key = "<S-Tab>";
+      action = "function() require('luasnip').jump(-1) end";
+      lua = true;
+    }
     # BUFFER CONTROLS ========================================
     {
       key = "<leader>c";
