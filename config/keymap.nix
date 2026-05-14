@@ -14,6 +14,43 @@
       mode = [ "n" "v" ];
       options.desc = "Trim trailing whitespace";
     }
+    # CLIPBOARD (Ctrl+Shift+C/V copy & paste, mainly for neovide)
+    {
+      mode = [ "v" "x" ];
+      key = "<C-S-c>";
+      action = ''"+y'';
+      options.desc = "Copy selection to system clipboard";
+    }
+    {
+      mode = "i";
+      key = "<C-S-v>";
+      action = "<C-r>+";
+      options.desc = "Paste from system clipboard";
+    }
+    {
+      mode = "c";
+      key = "<C-S-v>";
+      action = "<C-r>+";
+      options.desc = "Paste from system clipboard";
+    }
+    {
+      mode = "n";
+      key = "<C-S-v>";
+      action = ''"+p'';
+      options.desc = "Paste from system clipboard";
+    }
+    {
+      mode = "x";
+      key = "<C-S-v>";
+      action = ''"_d"+P'';
+      options.desc = "Paste from system clipboard (keep register)";
+    }
+    {
+      mode = "t";
+      key = "<C-S-v>";
+      action = ''<C-\><C-n>"+pi'';
+      options.desc = "Paste from system clipboard";
+    }
     # OVERRIDE DEFAULTS ========================================
     {
       mode = "n";
