@@ -5,16 +5,22 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-    };
+    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixvim, flake-parts, pre-commit-hooks, home-manager, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixvim
+    , flake-parts
+    , pre-commit-hooks
+    , home-manager
+    , ...
+    }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
 
@@ -39,6 +45,7 @@
           desktopItem = pkgs.makeDesktopItem {
             name = "bug-machine-nvim";
             desktopName = "BugMachine";
+            genericName = "Where bugs come to meet their maker";
             comment = "Bundled nixvim config running under neovide";
             exec = "${launcher}/bin/neovide %F";
             icon =
@@ -69,7 +76,10 @@
 
       packages = forAllSystems (system:
         let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = self.nixvimModules.default;
@@ -100,10 +110,8 @@
       });
 
       devShells = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
+        let pkgs = import nixpkgs { inherit system; };
+        in {
           default = pkgs.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages
@@ -111,7 +119,8 @@
           };
         });
 
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+      formatter =
+        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
       homeManagerModules.default = { config, pkgs, ... }: {
         imports = [ nixvim.homeManagerModules.nixvim ];
