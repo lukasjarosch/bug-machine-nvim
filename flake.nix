@@ -5,19 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixvim, flake-parts, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixvim, flake-parts, pre-commit-hooks, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
 
       # Build the neovide GUI wrapper for a given pkgs + already-built nvim
       # derivation. Used both by `packages.${system}.neovide` (for direct
@@ -56,24 +55,63 @@
               "text/x-nix"
             ];
           };
-        in pkgs.symlinkJoin {
+        in
+        pkgs.symlinkJoin {
           name = "neovide-bug-machine";
           paths = [ launcher desktopItem ];
           # Without mainProgram, `nix run .#neovide` would look for
           # bin/neovide-bug-machine (the derivation name) and fail.
           meta.mainProgram = "neovide";
         };
-    in {
+    in
+    {
       nixvimModules.default = { pkgs, ... }: { imports = [ ./config ]; };
 
-      packages.${system} = {
-        default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
-          module = self.nixvimModules.default;
-        };
+      packages = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+          nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+            inherit pkgs;
+            module = self.nixvimModules.default;
+          };
+        in
+        {
+          default = nvim;
+          neovide = mkNeovide pkgs nvim;
+        });
 
-        neovide = mkNeovide pkgs self.packages.${system}.default;
-      };
+      checks = forAllSystems (system: {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+            statix = {
+              enable = true;
+              settings.ignore = [ "**/hardware-configuration.nix" ];
+            };
+            trim-trailing-whitespace.enable = true;
+            end-of-file-fixer = {
+              enable = true;
+              excludes = [ "CLAUDE.md" ];
+            };
+            check-merge-conflicts.enable = true;
+          };
+        };
+      });
+
+      devShells = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShell {
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages
+              ++ [ pkgs.statix pkgs.nixpkgs-fmt ];
+          };
+        });
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
       homeManagerModules.default = { config, pkgs, ... }: {
         imports = [ nixvim.homeManagerModules.nixvim ];
