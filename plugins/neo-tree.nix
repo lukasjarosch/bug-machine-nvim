@@ -4,6 +4,7 @@
     closeIfLastWindow = true;
 
     filesystem = {
+      bindToCwd = true;
       followCurrentFile = { enabled = true; };
 
       window.mappings = {
