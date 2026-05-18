@@ -6,6 +6,10 @@
       autoEnableSources = true;
 
       settings = {
+        preselect = { __raw = "require('cmp').PreselectMode.None"; };
+        completion = {
+          completeopt = "menu,menuone,noinsert";
+        };
         sources = [
           {name = "nvim_lsp";}
           {name = "path";}
