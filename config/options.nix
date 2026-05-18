@@ -61,6 +61,6 @@
 
     signcolumn = "yes";
 
-    guifont = "FiraCode Nerd Font:h12";
+    guifont = "FiraCode Nerd Font:h10";
   };
 }
