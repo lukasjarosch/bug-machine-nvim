@@ -15,17 +15,6 @@
     # nerdfont support
     web-devicons.enable = true;
 
-    copilot-lua = {
-      enable = true;
-      settings = {
-        panel = { layout = { position = "right"; }; };
-        suggestion = {
-          enabled = false;
-          auto_trigger = false;
-        };
-      };
-    };
-
     # custom plugins
     windowPicker.enable = true;
     sonokai.enable = false; # disable `colorscheme` if enabled
