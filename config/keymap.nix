@@ -303,6 +303,26 @@
       mode = [ "n" "v" ];
     }
 
+    # SAVE COMMANDS ========================================
+    {
+      key = "<leader>s";
+      action = "<cmd>w<CR>";
+      mode = [ "n" ];
+      options = {
+        silent = true;
+        desc = "Save file";
+      };
+    }
+    {
+      key = "<leader>S";
+      action = "<cmd>wa<CR>";
+      mode = [ "n" ];
+      options = {
+        silent = true;
+        desc = "Save all files";
+      };
+    }
+
     # QUIT COMMANDS ========================================
     {
       key = "<leader>Q";
