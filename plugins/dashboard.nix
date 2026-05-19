@@ -17,7 +17,10 @@
           "                                                                                       "
         ];
         mru = { limit = 10; };
-        project = { enable = true; };
+        project = {
+          enable = true;
+          action.__raw = "function(path) vim.cmd('cd ' .. path) vim.cmd('Neotree reveal') end";
+        };
         packages = { enable = false; };
         shortcut = [
           {
