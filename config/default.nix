@@ -4,21 +4,19 @@
   colorschemes.onedark.enable = true;
   colorschemes.onedark.settings.style = "deep";
 
-  diagnostics = {
+  diagnostic.settings = {
     virtual_text = {
-      spacing = 4; # Number of spaces between virtual text and the line
-      source = "always"; # Show source of diagnostic
-      prefix = "●"; # Prefix for virtual text
+      spacing = 4;
+      source = "always";
+      prefix = "●";
     };
     signs = {
-      severity_sort = true; # Sort by severity
-      enable = true; # Make sure signs are enabled
+      severity_sort = true;
     };
-    underline = { enable = true; };
+    underline = true;
     float = {
-      enable = true;
-      border = "rounded"; # Abgerundete Ränder
-      source = "always"; # Quelle der Diagnose anzeigen
+      border = "rounded";
+      source = "always";
       header = "Diagnose";
       prefix = "";
     };
