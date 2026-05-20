@@ -22,13 +22,13 @@
           # Enabling codelenses for references, test, generate, gc_details
           codelenses = {
             generate = true;
-            gc_details = true;
-            regenerate_cgo = true;
+            gc_details = false;
+            regenerate_cgo = false;
             test = true;
-            tidy = true;
-            vendor = true;
-            references = true;
-            upgrade_dependency = true;
+            tidy = false;
+            vendor = false;
+            references = false;
+            upgrade_dependency = false;
           };
           # Improve symbol matching for standard library and dependencies
           directoryFilters = [

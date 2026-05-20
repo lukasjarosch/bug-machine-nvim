@@ -20,8 +20,8 @@ in {
       let g:go_gopls_enabled = 0            " Prevent vim-go from starting its own gopls instance
 
       " These features are kept because they're not provided by LSP or are better in vim-go
-      let g:go_fmt_command = 'goimports'    " Use goimports for automatic import management
-      let g:go_imports_autosave = 1         " Run goimports on file save
+      let g:go_fmt_autosave = 0             " none-ls handles formatting on save
+      let g:go_imports_autosave = 0         " none-ls handles goimports on save
 
       " Syntax highlighting options - these enhance the visual experience
       " and don't conflict with LSP functionality

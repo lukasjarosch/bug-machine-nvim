@@ -19,8 +19,6 @@
       };
 
       diagnostics = {
-        # Go
-        golangci_lint.enable = true;
         # YAML
         yamllint.enable = true;
         # Nix
