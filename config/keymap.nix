@@ -72,6 +72,18 @@
     }
     # SELECTION ========================================
     {
+      key = ">";
+      action = ">gv";
+      mode = [ "v" ];
+      options.desc = "Indent and keep selection";
+    }
+    {
+      key = "<";
+      action = "<gv";
+      mode = [ "v" ];
+      options.desc = "Unindent and keep selection";
+    }
+    {
       key = "<C-A-j>";
       action = ":m .+1<CR>==";
       mode = [ "n" ];
