@@ -1,5 +1,9 @@
 {
-  imports = [ ./keymap.nix ./options.nix ../plugins ];
+  imports = [
+    ./keymap.nix
+    ./options.nix
+    ../plugins
+  ];
 
   colorschemes.onedark.enable = true;
   colorschemes.onedark.settings.style = "deep";
@@ -36,12 +40,6 @@
         hjson = 'json',
         hujson = 'json',
       },
-    })
-
-    -- Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = {"*.go", "*.rs", "*.sh", "*.bash", "*.nix", "*.hjson", "*.hujson"},
-      callback = function() vim.lsp.buf.format({async = true}) end,
     })
 
     -- Make trailing spaces more visible with a custom highlighting

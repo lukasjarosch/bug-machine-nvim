@@ -2,22 +2,6 @@
   plugins.none-ls = {
     enable = true;
     sources = {
-      # Formatierung
-      formatting = {
-        # Go
-        gofmt.enable = true;
-        goimports.enable = true;
-        # YAML
-        yamlfmt.enable = true;
-        # Bash
-        shfmt = {
-          enable = true;
-          settings.extra_args = [ "-i" "2" "-ci" ];
-        };
-        # Nix
-        nixpkgs_fmt.enable = true;
-      };
-
       diagnostics = {
         # YAML
         yamllint.enable = true;

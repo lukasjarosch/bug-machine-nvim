@@ -54,10 +54,7 @@
       terraformls.enable = true;
       jsonls.enable = true;
       lua_ls.enable = true;
-      nil_ls = {
-        enable = true;
-        settings.formatting.command = [ "nixpkgs-fmt" ];
-      };
+      nil_ls.enable = true;
       bashls.enable = true;
     };
   };
