@@ -15,7 +15,7 @@
         json = [ "jq" ];
         yaml = [ "yamlfmt" ];
         toml = [ "taplo" ];
-        terraform = [ "terraform_fmt" ];
+        terraform = [ "tofu_fmt" ];
       };
 
       formatters.shfmt.prepend_args = [
@@ -42,6 +42,6 @@
     rustfmt
     jq
     taplo
-    terraform
+    opentofu
   ];
 }
