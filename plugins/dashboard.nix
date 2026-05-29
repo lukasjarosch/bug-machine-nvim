@@ -4,7 +4,10 @@
     settings = {
       change_to_vcs_root = true;
       config = {
-        footer = [ "" "If it compiles, ship it!" ];
+        footer = [
+          ""
+          "If it compiles, ship it!"
+        ];
         header = [
           "██████╗ ██╗   ██╗ ██████╗       ███╗   ███╗ █████╗  ██████╗██╗  ██╗██╗███╗   ██╗███████╗"
           "██╔══██╗██║   ██║██╔════╝       ████╗ ████║██╔══██╗██╔════╝██║  ██║██║████╗  ██║██╔════╝"
@@ -16,12 +19,22 @@
           "                       🐞 Where bugs come to meet their maker 🐞                       "
           "                                                                                       "
         ];
-        mru = { limit = 10; };
+        mru = {
+          limit = 10;
+        };
         project = {
           enable = true;
-          action.__raw = "function(path) vim.cmd('cd ' .. path) vim.cmd('Neotree reveal') end";
+          action.__raw = ''
+            function(path)
+              vim.cmd('cd ' .. path)
+              vim.cmd('Neotree reveal')
+              vim.cmd('wincmd p')
+            end
+          '';
         };
-        packages = { enable = false; };
+        packages = {
+          enable = false;
+        };
         shortcut = [
           {
             action = {
@@ -54,7 +67,9 @@
             key = "r";
           }
           {
-            action = { __raw = "function() vim.cmd('LazyGit') end"; };
+            action = {
+              __raw = "function() vim.cmd('LazyGit') end";
+            };
             desc = " Git";
             group = "Dev";
             icon = " ";
@@ -62,7 +77,9 @@
             key = "G";
           }
         ];
-        week_header = { enable = false; };
+        week_header = {
+          enable = false;
+        };
       };
       theme = "hyper";
 
