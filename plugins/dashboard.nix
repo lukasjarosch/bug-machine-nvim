@@ -20,7 +20,7 @@
           "                                                                                       "
         ];
         mru = {
-          limit = 10;
+          limit = 15;
         };
         project = {
           enable = true;
@@ -88,6 +88,49 @@
 
   # Add extra configuration for dashboard in Lua format
   extraConfigLua = ''
+    -- Refresh the dashboard project cache on startup.
+    -- Upstream only writes the cache on VimLeavePre from active LSP root_dirs,
+    -- so projects without an LSP (or sessions that don't exit cleanly) never
+    -- show up. This adds the current VCS root on every start instead.
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = function()
+        vim.schedule(function()
+          local cwd = vim.fn.getcwd()
+          local git_marker = vim.fs.find({ ".git" }, { upward = true, path = cwd })[1]
+          if not git_marker then
+            return
+          end
+          local project = vim.fs.dirname(git_marker)
+
+          local cache_dir = vim.fn.stdpath("cache") .. "/dashboard"
+          local cache_path = cache_dir .. "/cache"
+          vim.fn.mkdir(cache_dir, "p")
+
+          local plist = {}
+          local fd = io.open(cache_path, "r")
+          if fd then
+            local data = fd:read("*a")
+            fd:close()
+            local ok, chunk = pcall(loadstring, data or "")
+            if ok and chunk then
+              for _, p in ipairs(chunk() or {}) do
+                if p ~= project then
+                  table.insert(plist, p)
+                end
+              end
+            end
+          end
+          table.insert(plist, project)
+
+          local out = io.open(cache_path, "w")
+          if out then
+            out:write("return " .. vim.inspect(plist))
+            out:close()
+          end
+        end)
+      end,
+    })
+
     -- Additional customization for dashboard colors
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "dashboard",
