@@ -22,7 +22,7 @@
     termguicolors = true;
     scrolloff = 8;
     swapfile = false;
-
+    clipboard = "unnamedplus";
     ignorecase = true;
     smartcase = true;
     tabstop = 4;

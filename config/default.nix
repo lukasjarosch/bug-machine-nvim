@@ -26,6 +26,13 @@
     };
   };
 
+  clipboard = {
+    register = "unnamedplus";
+    providers = {
+      wl-copy.enable = true;
+    };
+  };
+
   extraConfigLua = ''
     -- Neovide font scale
     if vim.g.neovide then
