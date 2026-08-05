@@ -50,6 +50,14 @@
         };
       };
 
+      rust_analyzer = {
+        enable = true;
+        installCargo = true;
+        installRustc = true;
+        # rustfmt is already provided via conform.nix
+        installRustfmt = false;
+      };
+
       yamlls.enable = true;
       terraformls.enable = true;
       jsonls.enable = true;
