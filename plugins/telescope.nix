@@ -1,6 +1,13 @@
 {
   plugins.telescope = {
     enable = true;
+
+    extensions.ui-select = {
+      enable = true;
+      settings = {
+        __raw = "require('telescope.themes').get_dropdown({})";
+      };
+    };
   };
 
   # Mute the telescope borders by linking them to the colorscheme's own
