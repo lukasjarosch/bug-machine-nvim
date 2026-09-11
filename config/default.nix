@@ -52,6 +52,13 @@
     -- Make trailing spaces more visible with a custom highlighting
     vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF5370", fg = "#FFFFFF" })
 
+    -- listchars glyphs (tab/trail/etc.) and indent-blankline's per-level
+    -- guides are nearly invisible against onedark's "deep" background by
+    -- default - give them real contrast. IblScope (the active-scope
+    -- indicator) is left alone since its default color already works.
+    vim.api.nvim_set_hl(0, "Whitespace", { fg = "#4b5263" })
+    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#4b5263" })
+
     -- Create match for trailing whitespace with custom highlighting
     -- but exclude certain filetypes where it doesn't make sense
     vim.api.nvim_create_autocmd({"BufWinEnter", "FileType"}, {
