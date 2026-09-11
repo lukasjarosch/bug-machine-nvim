@@ -74,6 +74,21 @@
       lua_ls.enable = true;
       nil_ls.enable = true;
       bashls.enable = true;
+
+      harper_ls = {
+        enable = true;
+        settings = {
+          # nested under harper-ls like gopls above, same reason
+          "harper-ls" = {
+            diagnosticSeverity = "hint";
+            linters = {
+              SpellCheck = true;
+              SentenceCapitalization = true;
+              RepeatedWords = true;
+            };
+          };
+        };
+      };
     };
   };
 }
