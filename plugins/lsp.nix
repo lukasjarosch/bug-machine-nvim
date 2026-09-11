@@ -4,48 +4,58 @@
     servers = {
       gopls = {
         enable = true;
+        # NOTE: must be nested under `gopls`, matching gopls's own settings
+        # section name. gopls fetches its config via `workspace/configuration`
+        # with section "gopls" - without this nesting, Neovim's core handler
+        # (vim/lsp/handlers.lua, RSC['workspace/configuration']) does a
+        # `vim.tbl_get(client.settings, "gopls")` lookup that resolves to nil,
+        # so gopls silently gets no settings at all and falls back to its
+        # defaults (verified by tracing the actual LSP requests).
         settings = {
-          # Enhanced gopls settings to improve "go to definition" and other features
-          usePlaceholders = true;
-          completeUnimported = true;
-          staticcheck = true;
-          matcher = "fuzzy";
-          symbolMatcher = "fuzzy";
-          buildFlags = [ "-tags=integration,e2e" ];
-          analyses = {
-            unusedparams = true;
-            unusedvariable = true;
-            fieldalignment = true;
-            nilness = true;
-            shadow = true;
-          };
-          # Enabling codelenses for references, test, generate, gc_details
-          codelenses = {
-            generate = true;
-            gc_details = false;
-            regenerate_cgo = false;
-            test = true;
-            tidy = false;
-            vendor = false;
-            references = false;
-            upgrade_dependency = false;
-          };
-          # Improve symbol matching for standard library and dependencies
-          directoryFilters = [
-            "-node_modules"
-            "-vendor"
-          ];
-          # Allow gopls to work with the standard library
-          expandWorkspaceToModule = true;
-          # Show inlay hints for type information
-          hints = {
-            constantValues = true;
-            parameterNames = true;
-            assignVariableTypes = true;
-            rangeVariableTypes = true;
-            compositeLiteralTypes = true;
-            compositeLiteralFields = true;
-            functionTypeParameters = true;
+          gopls = {
+            # Enhanced gopls settings to improve "go to definition" and other features
+            usePlaceholders = true;
+            completeUnimported = true;
+            staticcheck = true;
+            # Without this, gopls never computes semantic tokens, which is how it
+            # highlights/links `[Type]` doc-comment references (Go 1.19+ doc comment
+            # syntax) - it defaults to off.
+            semanticTokens = true;
+            matcher = "fuzzy";
+            symbolMatcher = "fuzzy";
+            buildFlags = [ "-tags=integration,e2e" ];
+            analyses = {
+              unusedparams = true;
+              unusedvariable = true;
+              nilness = true;
+              shadow = true;
+            };
+            # Enabling codelenses for test and generate
+            codelenses = {
+              generate = true;
+              regenerate_cgo = false;
+              test = true;
+              tidy = false;
+              vendor = false;
+              upgrade_dependency = false;
+            };
+            # Improve symbol matching for standard library and dependencies
+            directoryFilters = [
+              "-node_modules"
+              "-vendor"
+            ];
+            # Allow gopls to work with the standard library
+            expandWorkspaceToModule = true;
+            # Show inlay hints for type information
+            hints = {
+              constantValues = true;
+              parameterNames = true;
+              assignVariableTypes = true;
+              rangeVariableTypes = true;
+              compositeLiteralTypes = true;
+              compositeLiteralFields = true;
+              functionTypeParameters = true;
+            };
           };
         };
       };
