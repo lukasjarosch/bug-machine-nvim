@@ -1,6 +1,6 @@
 {
   plugins.noice = {
-    enable = false;
+    enable = true;
 
     settings = {
       lsp = {
@@ -17,7 +17,7 @@
 
       presets = {
         bottom_search = true;
-        command_palette = true;
+        command_palette = false;
         long_message_to_split = true;
         inc_rename = false;
         lsp_doc_border = true;
@@ -25,22 +25,22 @@
 
       cmdline = {
         enabled = true;
-        view = "cmdline_popup";
-        opts = {
-          border = {
-            style = "rounded";
+        view = "cmdline";
+        format = {
+          input = {
+            view = "cmdline_popup";
           };
         };
       };
 
       messages = {
         enabled = true;
-        view = "notify";
+        view = "mini";
       };
 
       notify = {
         enabled = true;
-        view = "notify";
+        view = "mini";
       };
 
       views = {
