@@ -17,12 +17,13 @@
 
       presets = {
         bottom_search = true;
-        command_palette = false;
+        command_palette = false; # would force cmdline into a popup
         long_message_to_split = true;
         inc_rename = false;
         lsp_doc_border = true;
       };
 
+      # classic bottom cmdline; only vim.ui.input (e.g. rename) gets the popup
       cmdline = {
         enabled = true;
         view = "cmdline";
@@ -33,6 +34,7 @@
         };
       };
 
+      # "notify" view was too intrusive, "mini" is a quiet corner line
       messages = {
         enabled = true;
         view = "mini";

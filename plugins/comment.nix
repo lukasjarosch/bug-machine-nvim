@@ -3,6 +3,7 @@
     enable = true;
   };
 
+  # terminals send either <C-_> or <C-/> for ctrl+/, bind both
   keymaps =
     let
       toggleLine = ''
