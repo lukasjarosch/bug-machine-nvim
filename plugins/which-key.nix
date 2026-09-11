@@ -21,34 +21,8 @@
           group = "telescope";
           icon = "";
         }
-        {
-          __unkeyed-1 = "<leader>ff";
-          desc = "Find files";
-        }
-        {
-          __unkeyed-1 = "<leader>fb";
-          desc = "Buffers";
-        }
-        {
-          __unkeyed-1 = "<leader>fw";
-          desc = "Find words";
-        }
-        {
-          __unkeyed-1 = "<leader>fk";
-          desc = "Find keymaps";
-        }
-
-        # General
-        {
-          __unkeyed-1 = "<leader>Q";
-          desc = "Quit!";
-        }
-
-        # Buffers
-        {
-          __unkeyed-1 = "<leader>c";
-          desc = "Close buffer";
-        }
+        # (individual <leader>f* descriptions come from each keymap's
+        # options.desc in config/keymap.nix, not from this spec)
 
         # Trouble
         {
@@ -63,16 +37,20 @@
           group = "git";
           icon = "";
         }
-        {
-          __unkeyed-1 = "<leader>gc";
-          desc = "Commits";
-        }
+        # (<leader>gc description comes from its keymap's options.desc)
 
         # Debugging
         {
           __unkeyed-1 = "<leader>d";
           group = "🐞 debug";
           icon = "";
+        }
+
+        # LSP
+        {
+          __unkeyed-1 = "<leader>l";
+          group = "lsp";
+          icon = "🔧";
         }
 
         # Windows
@@ -104,12 +82,71 @@
 
         {
           __unkeyed-1 = "<leader>b";
-          group = "buffers";
+          group = "harpoon";
+          icon = "🔱";
         }
 
         {
           __unkeyed-1 = "<leader>r";
           group = "refactoring";
+        }
+
+        # AI / CodeCompanion
+        {
+          __unkeyed-1 = "<leader>a";
+          group = "ai";
+          icon = "";
+        }
+
+        # Folds (treesitter-based, see plugins/treesitter.nix)
+        {
+          __unkeyed-1 = "z";
+          group = "folds/view";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "za";
+          desc = "Toggle fold under cursor";
+        }
+        {
+          __unkeyed-1 = "zo";
+          desc = "Open fold under cursor";
+        }
+        {
+          __unkeyed-1 = "zc";
+          desc = "Close fold under cursor";
+        }
+        {
+          __unkeyed-1 = "zA";
+          desc = "Toggle fold recursively";
+        }
+        {
+          __unkeyed-1 = "zR";
+          desc = "Open all folds";
+        }
+        {
+          __unkeyed-1 = "zM";
+          desc = "Close all folds";
+        }
+        {
+          __unkeyed-1 = "zj";
+          desc = "Move to start of next fold";
+        }
+        {
+          __unkeyed-1 = "zk";
+          desc = "Move to end of previous fold";
+        }
+        {
+          __unkeyed-1 = "zz";
+          desc = "Center cursor line on screen";
+        }
+        {
+          __unkeyed-1 = "zt";
+          desc = "Scroll cursor line to top";
+        }
+        {
+          __unkeyed-1 = "zb";
+          desc = "Scroll cursor line to bottom";
         }
 
       ];

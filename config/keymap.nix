@@ -1,5 +1,13 @@
 {
   keymaps = [
+    # Cheat sheet: search every documented keymap, not just the ones
+    # nested under a leader prefix (which-key only auto-pops those).
+    {
+      key = "<leader>?";
+      action = "<cmd>WhichKey<CR>";
+      mode = [ "n" ];
+      options.desc = "Show all keymaps (which-key)";
+    }
     # Start resize mode (smart-splits)
     {
       key = "<leader>wr";
@@ -11,12 +19,18 @@
     {
       key = "<F5>";
       action = ":nnoremap <silent> <F5> :keeppatterns %s/s+$//e<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       options.desc = "Trim trailing whitespace";
     }
     # CLIPBOARD (Ctrl+Shift+C/V copy & paste, mainly for neovide)
     {
-      mode = [ "v" "x" ];
+      mode = [
+        "v"
+        "x"
+      ];
       key = "<C-S-c>";
       action = ''"+y'';
       options.desc = "Copy selection to system clipboard";
@@ -111,22 +125,47 @@
     {
       key = "<leader>ff";
       action = "<cmd>Telescope find_files<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Find files";
     }
     {
       key = "<leader>fb";
       action = "<cmd>Telescope buffers<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "List buffers";
     }
     {
       key = "<leader>fw";
       action = "<cmd>Telescope live_grep<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Find words (live grep)";
     }
     {
       key = "<leader>fk";
       action = "<cmd>Telescope keymaps<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Find keymaps";
+    }
+    {
+      key = "<leader>fh";
+      action = "<cmd>Telescope help_tags<CR>";
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Help tags (search all installed docs)";
     }
 
     # GO LSP COMMANDS ========================================
@@ -161,13 +200,16 @@
       options.desc = "Show hover documentation";
     }
     {
-      key = "<leader>ca";
+      key = "<leader>la";
       action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       options.desc = "Code actions";
     }
     {
-      key = "<leader>rn";
+      key = "<leader>lr";
       action = "<cmd>lua vim.lsp.buf.rename()<CR>";
       mode = [ "n" ];
       options.desc = "Rename symbol";
@@ -179,7 +221,7 @@
       options.desc = "Document symbols";
     }
     {
-      key = "<leader>ws";
+      key = "<leader>lw";
       action = "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>";
       mode = [ "n" ];
       options.desc = "Workspace symbols";
@@ -190,19 +232,25 @@
       mode = "n";
       key = "<leader>xw";
       action = "<cmd>Trouble diagnostics toggle<cr>";
-      options = { desc = "Full Diagnostics (Trouble)"; };
+      options = {
+        desc = "Full Diagnostics (Trouble)";
+      };
     }
     {
       mode = "n";
       key = "<leader>xd";
       action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
-      options = { desc = "Buffer Diagnostics (Trouble)"; };
+      options = {
+        desc = "Buffer Diagnostics (Trouble)";
+      };
     }
     {
       mode = "n";
       key = "<leader>xq";
       action = "<cmd>Trouble qflist toggle<cr>";
-      options = { desc = "Quickfix List (Trouble)"; };
+      options = {
+        desc = "Quickfix List (Trouble)";
+      };
     }
 
     # GO-SPECIFIC COMMANDS ====================================
@@ -219,7 +267,7 @@
       options.desc = "Test function under cursor";
     }
     {
-      key = "<leader>gc";
+      key = "<leader>gv";
       action = "<cmd>GoCoverage<CR>";
       mode = [ "n" ];
       options.desc = "Test coverage";
@@ -252,63 +300,92 @@
     {
       mode = "i";
       key = "<Tab>";
-      action.__raw =
-        "function() if require('luasnip').expand_or_jumpable() then require('luasnip').expand_or_jump() else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false) end end";
+      action.__raw = "function() if require('luasnip').expand_or_jumpable() then require('luasnip').expand_or_jump() else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false) end end";
+      options.desc = "Expand snippet or jump forward";
     }
     {
       mode = "s";
       key = "<Tab>";
       action.__raw = "function() require('luasnip').jump(1) end";
+      options.desc = "Jump forward in snippet";
     }
     {
       mode = "i";
       key = "<S-Tab>";
-      action.__raw =
-        "function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, false, true), 'n', false) end end";
+      action.__raw = "function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, false, true), 'n', false) end end";
+      options.desc = "Jump backward in snippet";
     }
     {
       mode = "s";
       key = "<S-Tab>";
       action.__raw = "function() require('luasnip').jump(-1) end";
+      options.desc = "Jump backward in snippet";
     }
     # BUFFER CONTROLS ========================================
     {
       key = "<leader>c";
       action = "<cmd>bp|bd #<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       options.desc = "Close buffer but keep window open";
     }
     {
       key = "L";
       action = "<cmd>BufferLineCycleNext<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Next buffer";
     }
     {
       key = "H";
       action = "<cmd>BufferLineCyclePrev<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Previous buffer";
     }
 
     # WINDOW NAVIGATION ========================================
     {
       key = "<C-h>";
       action = "<cmd>lua vim.cmd('wincmd h')<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Focus window left";
     }
     {
       key = "<C-l>";
       action = "<cmd>lua vim.cmd('wincmd l')<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Focus window right";
     }
     {
       key = "<C-j>";
       action = "<cmd>lua vim.cmd('wincmd j')<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Focus window below";
     }
     {
       key = "<C-k>";
       action = "<cmd>lua vim.cmd('wincmd k')<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Focus window above";
     }
 
     # SAVE COMMANDS ========================================
@@ -335,31 +412,80 @@
     {
       key = "<leader>Q";
       action = "<cmd>qa!<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Quit all (force)";
     }
 
     # GIT COMMANDS ========================================
     {
       key = "<leader>gg";
       action = "<cmd>LazyGit<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Open LazyGit";
     }
     {
       key = "<leader>gc";
       action = "<cmd>Telescope git_commits<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Commits";
     }
 
     # FILE EXPLORER ========================================
     {
       key = "<leader>e";
       action = "<cmd>Neotree toggle<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Toggle file explorer";
     }
     {
       key = "<leader>o";
       action = "<cmd>Neotree focus<CR>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Focus file explorer";
+    }
+
+    # AI / CODECOMPANION =====================================
+    {
+      key = "<leader>aa";
+      action = "<cmd>CodeCompanionActions<CR>";
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Actions palette";
+    }
+    {
+      key = "<leader>ac";
+      action = "<cmd>CodeCompanionChat Toggle<CR>";
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Toggle chat";
+    }
+    {
+      key = "<leader>ai";
+      action = ":CodeCompanion ";
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Inline prompt";
     }
   ];
 }
