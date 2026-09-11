@@ -8,7 +8,6 @@
   opts = {
     foldmethod = "expr";
     foldexpr = "v:lua.vim.treesitter.foldexpr()";
-    # start with folds open
     foldlevel = 99;
     foldlevelstart = 99;
   };

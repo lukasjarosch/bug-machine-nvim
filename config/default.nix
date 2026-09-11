@@ -52,7 +52,6 @@
     -- Make trailing spaces more visible with a custom highlighting
     vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF5370", fg = "#FFFFFF" })
 
-    -- default whitespace/indent-guide color was too dim to see
     vim.api.nvim_set_hl(0, "Whitespace", { fg = "#4b5263" })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = "#4b5263" })
 
