@@ -3,8 +3,6 @@
     enable = true;
   };
 
-  # Ctrl+/ toggle, like every other editor. Terminals disagree on whether
-  # Ctrl+/ arrives as <C-_> or <C-/>, so bind both to be safe.
   keymaps =
     let
       toggleLine = ''

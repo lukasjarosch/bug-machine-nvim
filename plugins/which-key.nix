@@ -21,9 +21,6 @@
           group = "telescope";
           icon = "";
         }
-        # (individual <leader>f* descriptions come from each keymap's
-        # options.desc in config/keymap.nix, not from this spec)
-
         # Trouble
         {
           __unkeyed-1 = "<leader>x";
@@ -37,8 +34,6 @@
           group = "git";
           icon = "";
         }
-        # (<leader>gc description comes from its keymap's options.desc)
-
         # Debugging
         {
           __unkeyed-1 = "<leader>d";
@@ -98,7 +93,7 @@
           icon = "";
         }
 
-        # Folds (treesitter-based, see plugins/treesitter.nix)
+        # Folds
         {
           __unkeyed-1 = "z";
           group = "folds/view";

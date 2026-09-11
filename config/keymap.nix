@@ -1,7 +1,5 @@
 {
   keymaps = [
-    # Cheat sheet: search every documented keymap, not just the ones
-    # nested under a leader prefix (which-key only auto-pops those).
     {
       key = "<leader>?";
       action = "<cmd>WhichKey<CR>";
