@@ -26,12 +26,7 @@
     };
   };
 
-  clipboard = {
-    register = "unnamedplus";
-    providers = {
-      wl-copy.enable = true;
-    };
-  };
+  clipboard.providers.wl-copy.enable = true;
 
   extraConfigLua = ''
     -- Neovide font scale
@@ -139,6 +134,16 @@
           [vim.diagnostic.severity.HINT]  = "",
         },
       },
+    })
+
+    -- Only yanks reach the system clipboard; changes and deletes stay in
+    -- Vim's registers.
+    vim.api.nvim_create_autocmd("TextYankPost", {
+      callback = function()
+        if vim.v.event.operator == "y" then
+          vim.fn.setreg("+", vim.v.event.regcontents, vim.v.event.regtype)
+        end
+      end,
     })
   '';
 }
